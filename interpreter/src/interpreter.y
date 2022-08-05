@@ -12,14 +12,18 @@
 
 %token NL         // nueva línea
 %token CONSTANT   // constante
+%token WORLD   // constante
+%token X  
 
 %%
 
 program
-  : statement_list            // Lista de sentencias
-  |                           // Programa vacio
+  : word_statement statement_list // Lista de sentencias
+  |                             // Programa vacio
   ;
-
+word_statement
+  : WORLD CONSTANT X CONSTANT NL
+  ;
 statement_list
   : statement                // Unica sentencia
   | statement statement_list // Sentencia,y lista
@@ -27,7 +31,7 @@ statement_list
 
 statement
   : CONSTANT NL {System.out.println("constante: "+ $1); $$ = $1;}
-  ;
+  ; 
 
 
 %%

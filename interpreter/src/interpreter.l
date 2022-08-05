@@ -32,6 +32,8 @@ package org.unp.plp.interprete;
 %}
 
 %%
+"world" {return Parser.WORLD; }
+"x" {return Parser.X; }
 
 [0-9]+
    {  yyparser.yylval = new Integer(yytext());
