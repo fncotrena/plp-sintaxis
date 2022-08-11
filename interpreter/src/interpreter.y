@@ -13,26 +13,48 @@
 %token NL         // nueva línea
 %token CONSTANT   // constante
 %token WORLD   // constante
-%token X  
+%token GOLD  
+%token PIT  
+%token WUMPUS  
+%token HERO
+%token PRINT
+%token IN
+%token CORCHETEA 
+%token CORCHETEB
+%token SEMI
+%token REM
 
 %%
+//WORld statt, action_statement ;print_statement
 
 program
-  : word_statement statement_list // Lista de sentencias
-  |                             // Programa vacio
-  ;
+  : word_statement action_statement statement_list 
+  |
+SEMI
+
 word_statement
-  : WORLD CONSTANT X CONSTANT NL
-  ;
+  : WORLD CONSTANT X CONSTANT SEMI NL {world.create(int)$2,(int)$4)}
+SEMI
+
+action_statement
+  : ACTION $2 IN CORCHETEA CONSTANTS SEMI CONSTANTS CORCHETEB {wold.put((String)$2,(int)$5,int()))}
+SEMI
+
+print_statement
+:PRINT WORLD {world.print}
+
 statement_list
   : statement                // Unica sentencia
   | statement statement_list // Sentencia,y lista
-  ;
+SEMI
 
 statement
-  : CONSTANT NL {System.out.println("constante: "+ $1); $$ = $1;}
-  ; 
-
+:action_statement 
+|print_statement
+;
+action 
+:PUT{System.out.println("pone")}
+|REM{System.out.println("remover")}
 
 %%
 

@@ -35,6 +35,24 @@ package org.unp.plp.interprete;
 "world" {return Parser.WORLD; }
 "x" {return Parser.X; }
 
+"gold" {return Parser.GOLD; }
+
+"pit" {return Parser.PIT; }
+
+"wumpus" {return Parser.WUMPUS; }
+
+"hero" {return Parser.HERO; }
+
+"[" {return Parser.CORCHETEA; }
+
+"]" {return Parser.CORCHETEB; }
+
+";" {return Parser.SEMI; }
+
+"rem" {return Parser.REM; }
+
+"" { return Parser.OBJECT; }
+
 [0-9]+
    {  yyparser.yylval = new Integer(yytext());
       return Parser.CONSTANT;
@@ -46,7 +64,7 @@ package org.unp.plp.interprete;
     return Parser.NL;
   }
 
-[ \t]+ {  /** accion vacia: se ignoran los espacios y tabuladores **/
+[ \t]+ {  /** accionwumpus [3,2] vacia: se ignoran los espacios y tabuladores **/
        }
 
 .      {  /** token desconocido: se produce un mensaje de error **/
