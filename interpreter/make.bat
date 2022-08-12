@@ -1,7 +1,7 @@
 SET NAME=interpreter
 SET DIR=org\unp\plp\interprete
 SET PKG=org.unp.plp.interprete
-SET JFLEX_HOME=C:\*****\jflex-1.6.1
+SET JFLEX_HOME=C:\Users\nico_\Downloads\jflex-1.6.1
 
 del src\%DIR%\Lexer.java
 del src\%DIR%\Parser.java
