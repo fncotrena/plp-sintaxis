@@ -32,27 +32,27 @@ package org.unp.plp.interprete;
 %}
 
 %%
-"world" {return Parser.WORLD; }
-"x" {return Parser.X; }
+"world" {return Parser.WORLD;}
+"x" {return Parser.X;}
 
-"gold" {return Parser.GOLD; }
+"gold" {return Parser.GOLD;}
 
-"pit" {return Parser.PIT; }
+"pit" {return Parser.PIT;}
 
-"wumpus" {return Parser.WUMPUS; }
+"wumpus" {return Parser.WUMPUS;}
 
-"hero" {return Parser.HERO; }
+"hero" {return Parser.HERO;}
 
-"[" {return Parser.CORCHETEA; }
+"[" {return Parser.CORCHETEA;}
 
-"]" {return Parser.CORCHETEB; }
+"]" {return Parser.CORCHETEB;}
 
-";" {return Parser.SEMI; }
+";" {return Parser.SEMI;}
 
-"rem" {return Parser.REM; }
+"rem" {return Parser.REM;}
 
-"" { return Parser.OBJECT; }
 
+"put" {return Parser.PUT;}
 [0-9]+
    {  yyparser.yylval = new Integer(yytext());
       return Parser.CONSTANT;

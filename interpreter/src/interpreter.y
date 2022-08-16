@@ -6,10 +6,6 @@
   import java.util.List;
   import java.util.ArrayList;
 %}
-
-
-// lista de tokens por orden de prioridad
-
 %token NL         // nueva línea
 %token CONSTANT   // constante
 %token WORLD   // constante
@@ -23,39 +19,38 @@
 %token CORCHETEB
 %token SEMI
 %token REM
-
 %%
-//WORld statt, action_statement ;print_statement
+
 
 program
   : word_statement action_statement statement_list 
   |
-SEMI
+;
 
 word_statement
-  : WORLD CONSTANT X CONSTANT SEMI NL {world.create(int)$2,(int)$4)}
-SEMI
-
+  : WORLD CONSTANT X CONSTANT SEMI NL {world.create((int)$2,(int)$4);}
+;
 action_statement
-  : ACTION $2 IN CORCHETEA CONSTANTS SEMI CONSTANTS CORCHETEB {wold.put((String)$2,(int)$5,int()))}
-SEMI
+  : ACTION {$2;} IN CORCHETEA CONSTANTS SEMI CONSTANTS CORCHETEB {world.put((String)$2,(int)$5,(int)$7);}
+;
 
 print_statement
-:PRINT WORLD {world.print}
+:PRINT WORLD {world.print();}
+;
 
 statement_list
   : statement                // Unica sentencia
   | statement statement_list // Sentencia,y lista
-SEMI
+;
 
 statement
 :action_statement 
 |print_statement
 ;
 action 
-:PUT{System.out.println("pone")}
-|REM{System.out.println("remover")}
-
+:PUT
+|REM
+;
 %%
 
   /** referencia al analizador léxico
