@@ -1,6 +1,5 @@
 package org.unp.plp.interprete;
 
-import javax.swing.text.html.parser.Parser;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,6 +36,7 @@ class Main {
 
 		// Ejecuta el analizador léxico/sintáctico
 		Parser analizador = new Parser(lector);
+		//analizador.yydebug = true;
 		analizador.yyparse();
 	}
 

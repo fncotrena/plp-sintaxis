@@ -32,27 +32,19 @@ package org.unp.plp.interprete;
 %}
 
 %%
-"world" {return Parser.WORLD;}
-"x" {return Parser.X;}
 
-"gold" {return Parser.GOLD;}
-
-"pit" {return Parser.PIT;}
-
-"wumpus" {return Parser.WUMPUS;}
-
-"hero" {return Parser.HERO;}
-
-"[" {return Parser.CORCHETEA;}
-
-"]" {return Parser.CORCHETEB;}
-
-";" {return Parser.SEMI;}
-
-"rem" {return Parser.REM;}
+"world"   { return Parser.WORLD; }
+"pit"     { return Parser.PIT; }
+"wumpus"  { yyparser.yylval = yytext(); return Parser.WUMPUS; }
+"hero"    { yyparser.yylval = yytext(); return Parser.HERO; }
+"gold"    { yyparser.yylval = yytext(); return Parser.GOLD; }
 
 
-"put" {return Parser.PUT;}
+"put" { return Parser.PUT; }
+"in"  { return Parser.IN; }
+
+"print" { return Parser.PRINT; }
+
 [0-9]+
    {  yyparser.yylval = new Integer(yytext());
       return Parser.CONSTANT;
@@ -64,9 +56,18 @@ package org.unp.plp.interprete;
     return Parser.NL;
   }
 
-[ \t]+ {  /** accionwumpus [3,2] vacia: se ignoran los espacios y tabuladores **/
+[+\-*/\[\],;:><=\?ijx] {
+      /** Deja pasar los caracteres únicos como literales **/
+      /** No es ninguna expresión regular, sólo los caracteres literales **/
+      yyparser.yylval = yytext();
+      return yytext().charAt(0);
+    }
+
+[ \t]+ {  /** accion vacia: se ignoran los espacios y tabuladores **/
        }
 
-.      {  /** token desconocido: se produce un mensaje de error **/
-          yyparser.yyerror("El lexema '"+yytext()+"' no corresponden a ningún token conocido");
-       }
+
+.  {  /** token desconocido: se produce un mensaje de error **/
+      //  yyparser.yyerror("El lexema '"+yytext()+"' no corresponden a ningún token conocido");
+    }
+
